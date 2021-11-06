@@ -62,7 +62,7 @@ def map_kh_parking():
             info = '%s<br>%s<br>停車格數：%s' %(name, fee, total)
             
             folium.Marker([float(lat), float(lng)], tooltip=info,
-                        icon=folium.Icon(color='green', prefix='fa', icon='fa-car')).add_to(m)
+                        icon=folium.Icon(color='blue', prefix='fa', icon='fa-motorcycle')).add_to(m)
             
         except Exception as e:
             print(e.args)    
@@ -141,11 +141,13 @@ def aqi_chart_24h():
     data = resultProxy.fetchall()
 
     aqi_list = list()
+    time_list = list()
     for item in data:
         aqi_list.append( float(item['aqi']) )
+        time_list.append( (item['time'] ) 
 
     # plot
-    plt.plot(aqi_list)
+    plt.plot(time_list,aqi_list)
     plt.grid()
     plt.savefig('img.png')
     plt.close()
